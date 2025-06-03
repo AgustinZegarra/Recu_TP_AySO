@@ -1,0 +1,89 @@
+git clone https://github.com/sofiasartori/UTN-FRA_SO_Examenes
+cd UTN-FRA_SO_Examenes
+chmod +x script_Precondicion.sh
+./script_Precondicion.sh
+source ~/.bashrc
+cd ~
+git clone https://github.com/AgustinZegarra/Recu_TP_AySO.git
+cd ~
+git clone https://github.com/TU_USUARIO/Recu_TP_AySO.git
+git config --global user.name "Agustin Zegarra"
+git config --global user.email "agustinzegarra49@gmail.com"
+sudo mkdir -p /datos/{textos/{libros,revistas},videos/{peliculas,series}}
+sudo apt update
+sudo apt install tree -y
+sudo tree /datos
+cd ~/Recu_TP_AySO
+echo 'sudo mkdir -p /datos/{textos/{libros,revistas},videos/{peliculas,series}}' > Punto_A.sh
+git add Punto_A.sh
+git commit -m "ADD: Punto A - Estructura simétrica en /datos"
+git push
+git add Punto_A.sh
+git commit -m "ADD: Punto A - Estructura simétrica en /datos"
+git push
+pwd
+ls
+git status
+git push
+sudo groupadd p1c1_2024_g1
+sudo useradd -m -G p1c1_2024_g1 p1c1_2024_u1
+echo "p1c1_2024_u1:clave1" | sudo chpasswd
+sudo chown -R p1c1_2024_u1:p1c1_2024_g1 /datos
+sudo chmod -R 750 /datos
+sudo su -c "whoami > /datos/validar1.txt" p1c1_2024_u1
+nano Punto_B.sh
+git add Punto_B.sh
+git commit -m "ADD: Punto B - Usuarios y permisos básicos"
+git push
+sudo useradd -m -g p1c1_2024_Todos p1c1_2024_u2
+sudo groupadd p1c1_2024_Todos
+sudo useradd -m -g p1c1_2024_Todos p1c1_2024_u2
+echo "p1c1_2024_u2:clave1" | sudo chpasswd
+sudo usermod -aG p1c1_2024_Todos p1c1_2024_u1
+sudo chgrp -R p1c1_2024_Todos /datos
+sudo chmod -R 770 /datos
+sudo chmod o+x /datos
+sudo su -c "id >> /datos/validar1.txt" p1c1_2024_u2
+sudo su - p1c1_2024_u1
+cat /datos/validar1.txt
+exit
+cd ~/Recu_TP_AySO
+nano Punto_C.sh
+git add Punto_C.sh
+git commit -m "ADD: Punto C - Usuarios y permisos parte 2"
+git push
+mkdir -p ~/Ejercicio_D/{rx/{lote_{1..20},extras_{1..100}},tx/lote_{1..20}}
+tree ~/Ejercicio_D/ --noreport | pr -T -s' ' -w 80 --column 4
+mkdir -p ~/Ejercicio_D/{rx/{lote_{1..20},extras_{1..100}},tx/lote_{1..20}}
+git add Punto_D.sh
+git commit -m "ADD: Punto D - Estructura asimétrica"
+git push
+nano Punto_D.sh
+git add Punto_D.sh
+git commit -m "ADD: Punto D - Estructura asimétrica"
+git push
+mkdir ~/Punto_E
+grep MemTotal /proc/meminfo
+grep MemTotal /proc/meminfo > ~/Punto_E/Filtro_basico.txt
+grep 'model name' /proc/cpuinfo | uniq
+grep 'model name' /proc/cpuinfo | uniq >> ~/Punto_E/Filtro_basico.txt
+git add Punto_E.sh
+git commit -m "ADD: Punto E - Filtros básicos"
+git push
+nano Punto_E.sh
+git add Punto_E.sh
+git commit -m "ADD: Punto E - Filtros básicos"
+git push
+mkdir ~/Punto_F
+curl -s ifconfig.me
+echo "Mi ip publica es: $(curl -s ifconfig.me)" > ~/Punto_F/Filtro_Avanzado.txt
+grep 'model name' /proc/cpuinfo | uniq
+grep 'model name' /proc/cpuinfo | uniq | awk -F: '{gsub(/^[ \t]+/, "", $2); split($2, a, "@"); print "CPU Modelo:" a[1] " Frecuencia:" a[2]}'
+grep 'model name' /proc/cpuinfo | uniq | awk -F: '{gsub(/^[ \t]+/, "", $2); split($2, a, "@"); print "CPU Modelo:" a[1] " Frecuencia:" a[2]}' >> ~/Punto_F/Filtro_Avanzado.txt
+cd ~/Recu_TP_AySO
+nano Punto_F.sh
+git add Punto_F.sh
+git commit -m "ADD: Punto F - Filtros avanzados"
+git push
+history -a
+cd ~/Recu_TP_AySO
